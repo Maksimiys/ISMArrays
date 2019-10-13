@@ -1,0 +1,6 @@
+C:\Users\ма\source\repos\ISMArrays\Arrays1\bin\Debug\Arrays1.exe.config
+C:\Users\ма\source\repos\ISMArrays\Arrays1\bin\Debug\Arrays1.exe
+C:\Users\ма\source\repos\ISMArrays\Arrays1\bin\Debug\Arrays1.pdb
+C:\Users\ма\source\repos\ISMArrays\Arrays1\obj\Debug\Arrays1.csprojAssemblyReference.cache
+C:\Users\ма\source\repos\ISMArrays\Arrays1\obj\Debug\Arrays1.exe
+C:\Users\ма\source\repos\ISMArrays\Arrays1\obj\Debug\Arrays1.pdb
