@@ -19,7 +19,7 @@ namespace OOPDraw
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Shape_Point[] shapes = new Shape_Point[21];
+            Shape_Point[] shapes = new Shape_Point[20];
             Random rnd = new Random();
             Color colors = new Color();
             colors = Color.Green;

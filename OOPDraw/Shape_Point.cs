@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOPDraw
 {
-    class Shape_Point
+    public abstract class Shape_Point
     {
         protected int X;
         protected int Y;
@@ -23,10 +23,7 @@ namespace OOPDraw
             Y = y;
             colors = color;
         }
-        public virtual void Draw(Graphics graphics)
-        {
-            
-        }
+        public abstract void Draw(Graphics graphics);
 
     }
 }
