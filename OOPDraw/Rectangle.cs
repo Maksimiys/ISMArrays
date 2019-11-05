@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOPDraw
 {
-    class Rectangle : Line
+    public class Rectangle : Line
     {
         private Random rm = new Random();
         public Rectangle()

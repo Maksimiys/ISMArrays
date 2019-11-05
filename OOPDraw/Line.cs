@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOPDraw
 {
-    class Line : Point
+    public class Line : Point
     {
        
         protected int X1;

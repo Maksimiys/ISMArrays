@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOPDraw
 {
-    class Ellips:EllipsLine
+    public class Ellips:EllipsLine
     {
         public Ellips()
         {

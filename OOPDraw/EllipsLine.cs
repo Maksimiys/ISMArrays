@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOPDraw
 {
-    class EllipsLine:Point
+    public class EllipsLine:Point
     {
         protected int XR;
         protected int YR;
