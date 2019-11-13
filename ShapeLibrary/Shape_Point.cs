@@ -17,7 +17,7 @@ namespace OOPDraw
         {
 
         }
-        public Shape_Point (int x, int y,Color color)
+        public Shape_Point(int x, int y, Color color)
         {
             X = x;
             Y = y;

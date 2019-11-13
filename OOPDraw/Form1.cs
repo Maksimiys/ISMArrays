@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ShapesLibrary;
 
 namespace OOPDraw
 {
@@ -16,42 +17,48 @@ namespace OOPDraw
         {
             InitializeComponent();
         }
-
+        protected List <Shape_Point> shapes;
         private void button1_Click(object sender, EventArgs e)
         {
-            Shape_Point[] shapes = new Shape_Point[20];
+            shapes = new List<Shape_Point>();
             Random rnd = new Random();
             Color colors = new Color();
-            colors = Color.Green;
-            for(int i=0;i<shapes.Length;i++)
+            if (colorDialog1.ShowDialog() != DialogResult.OK)
+                return;
+            colors = colorDialog1.Color ;
+            for(int i=0;i<trackBar1.Value;i++)
             {
                 int number =rnd.Next(1,6) ;
                 if(number==1)
                 {
-                    shapes[i] = new Point();
+                    shapes.Add(new  ShapesLibrary.Point());
                 }
                 if(number==2)                
                 {
-                    shapes[i] = new Line(rnd.Next(0, 600), rnd.Next(0, 300), rnd.Next(0, 600), rnd.Next(0, 300), colors);
+                    shapes.Add(new ShapesLibrary.Line(rnd.Next(0, pictureBox1.Width), rnd.Next(0, pictureBox1.Height), rnd.Next(0,pictureBox1.Width), rnd.Next(0, pictureBox1.Height), colors));
                 }
                 if(number==3)
                 {
-                    shapes[i] = new Rectangle(rnd.Next(0, 500), rnd.Next(0, 200), rnd.Next(0, 100), rnd.Next(0, 100), colors);
+
+                    shapes.Add(new ShapesLibrary.Rectangle(rnd.Next(0, pictureBox1.Width/2), rnd.Next(0, pictureBox1.Height/2), rnd.Next(0, pictureBox1.Width), rnd.Next(0, pictureBox1.Width), colors));
                 }
                 if(number==4)
                 {
-                    int radius = rnd.Next(0, 100);
-                    shapes[i] = new EllipsLine(rnd.Next(0, 500), rnd.Next(0, 200),radius , radius, colors);
+                    int radius = rnd.Next(0, pictureBox1.Width/2);
+                    shapes.Add(new ShapesLibrary.EllipsLine(rnd.Next(0, pictureBox1.Width/2), rnd.Next(0, pictureBox1.Height/2),radius , colors));
                 }
                 if (number == 5)
                 {
-                    shapes[i] = new Ellips(rnd.Next(0, 500), rnd.Next(0, 200),rnd.Next(0, 100), rnd.Next(0, 100), colors);
+                    shapes.Add(new ShapesLibrary.Ellips(rnd.Next(0, pictureBox1.Width/2), rnd.Next(0, pictureBox1.Height/2),rnd.Next(0, pictureBox1.Width/2), rnd.Next(0, pictureBox1.Height/2), colors));
                 }
 
             }
-            for (int j = 0; j < shapes.Length; j++)
+            pictureBox1.Refresh();
+
+            for (int j = 0; j <trackBar1.Value; j++)
                 {
                     shapes[j].Draw(pictureBox1.CreateGraphics());
+                
                 }
          
         }
@@ -64,6 +71,72 @@ namespace OOPDraw
         private void button2_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = null;
+            pictureBox1.Refresh();
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+           
+                if (shapes != null)
+                {
+                    for (int i = 0; i <trackBar1.Value; i++)
+                    {
+                        shapes[i].Draw(e.Graphics);
+                    }
+                }
+            
+        }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+           
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+ Color colors = new Color();
+            if (colorDialog1.ShowDialog() != DialogResult.OK)
+                return;
+            colors = colorDialog1.Color;
+                Random rnd = new Random();
+           switch(comboBox1.SelectedIndex)
+            {
+                
+                case 0:
+                
+                    shapes.Add(new ShapesLibrary.Point());
+                    break;
+                case 1:
+                
+                    shapes.Add(new ShapesLibrary.Line(rnd.Next(0, pictureBox1.Width), rnd.Next(0, pictureBox1.Height), rnd.Next(0, pictureBox1.Width), rnd.Next(0, pictureBox1.Height), colors));
+                    break;
+                case 2:
+
+                    shapes.Add(new ShapesLibrary.Rectangle(rnd.Next(0, pictureBox1.Width / 2), rnd.Next(0, pictureBox1.Height / 2), rnd.Next(0, pictureBox1.Width), rnd.Next(0, pictureBox1.Width), colors));
+                    break;
+                case 3:
+                    int radius = rnd.Next(0, 200);
+                    shapes.Add(new ShapesLibrary.EllipsLine(rnd.Next(0, pictureBox1.Width / 2), rnd.Next(0, pictureBox1.Height / 2), radius, colors));
+                    break;
+                case 4:
+                    shapes.Add(new ShapesLibrary.Ellips(rnd.Next(0, pictureBox1.Width / 2), rnd.Next(0, pictureBox1.Height / 2), rnd.Next(0, pictureBox1.Width / 10), rnd.Next(0, pictureBox1.Height / 10), colors));
+                    break;
+
+            }
+            for (int i = 0; i < shapes.Count; i++)
+            {
+                shapes[i].Draw(pictureBox1.CreateGraphics());
+            }
         }
     }
 }

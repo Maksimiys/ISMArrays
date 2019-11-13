@@ -1,29 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OOPDraw
 {
-    public class Point:Shape_Point
+    public class Point : Shape_Point
     {
         // protected int X;
         ////protected int Y;
         //protected Color colors;
-        protected Brush point =new SolidBrush(Color.Red);
+        protected Brush point = new SolidBrush(Color.Red);
         private Random rn = new Random();
         public Point()
         {
-            
-            X = rn.Next(0,500);
-            Y = rn.Next(0,300);
+
+            X = rn.Next(0, 500);
+            Y = rn.Next(0, 300);
             colors = Color.Red;
         }
-        public Point(int x, int y, Color colors):base( x,y,colors)
+        public Point(int x, int y, Color colors) : base(x, y, colors)
         {
-            
+
         }
         public void Copy(Point shapes)
         {
@@ -33,9 +29,9 @@ namespace OOPDraw
         }
         public override void Draw(Graphics graphics)
         {
-           graphics.FillEllipse(point, X, Y, 3, 3);
+            graphics.FillEllipse(point, X, Y, 3, 3);
         }
-        public void SetPoint(int x,int y)
+        public void SetPoint(int x, int y)
         {
             X = x;
             Y = y;
