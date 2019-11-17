@@ -54,8 +54,9 @@ namespace OOPDROW
                 }
                 if (number == 5)
                 {
+                    int radius = rnd.Next(0, pictureBox1.Width / 2);
                     shapes.Add(new ShapesLibrary.Ellips(rnd.Next(0, pictureBox1.Width / 2), 
-                        rnd.Next(0, pictureBox1.Height / 2),
+                        rnd.Next(0, pictureBox1.Height / 2),radius,
                         colors));
                 }
 }
@@ -101,8 +102,9 @@ pictureBox1.Refresh();
                         colors));
                     break;
                 case 4:
+                    int radius1 = rnd.Next(0, pictureBox1.Width / 2);
                     shapes.Add(new ShapesLibrary.Ellips(rnd.Next(0, pictureBox1.Width / 2),
-                        rnd.Next(0, pictureBox1.Height / 2)
+                        rnd.Next(0, pictureBox1.Height / 2),radius1
                         , colors));
                     break;
             }
@@ -186,8 +188,8 @@ return;
                         shapes.Add(new ShapesLibrary.Point(X, Y, colors));
                         break;
                     case 1:
-                        shapes.Add(new ShapesLibrary.Line(rnd.Next(0, pictureBox1.Width),
-                            rnd.Next(0, pictureBox1.Height),
+                        shapes.Add(new ShapesLibrary.Line(X,
+                            Y,
                             rnd.Next(0, pictureBox1.Width),
                             rnd.Next(0, pictureBox1.Height), colors));
                         break;
@@ -199,10 +201,11 @@ return;
                         break;
                     case 3:
                         int radius = rnd.Next(0, pictureBox1.Width / 2);
-                        shapes.Add(new ShapesLibrary.EllipsLine(X, Y, radius, colors));
+                        shapes.Add(new ShapesLibrary.EllipsLine(X-radius/2, Y-radius / 2, radius, colors));
                         break;
                     case 4:
-                        shapes.Add(new ShapesLibrary.Ellips(X, Y, colors));
+                        int radius1 = rnd.Next(0, pictureBox1.Width / 2);
+                        shapes.Add(new ShapesLibrary.Ellips(X-radius1/2, Y-radius1/2,radius1, colors));
                         break;
                 }
                 for (int j = 0; j < shapes.Count; j++)
