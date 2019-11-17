@@ -86,8 +86,21 @@ namespace Paint_Form
         }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+            if(listBoxShapes.SelectedIndex==-1 || listBoxShapes.Items.Count == 0)
+            {
+                MessageBox.Show("Фігуру не виявлено", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           else
+                for(int i=0;i< listBoxShapes.Items.Count;i++)
+                {
+                    if(listBoxShapes.GetSelected(i))
+                    {
+                        DeleteShape(i);
+                        i--;
 
-            DeleteShape(listBoxShapes.SelectedIndex);
+                    }
+                }
+            
            
         }
 
@@ -99,9 +112,7 @@ namespace Paint_Form
                     MouseX1 = e.X;
                     MouseY1 = e.Y;
                     //Shapes.Add(new ShapesLibrary.Point());
-                    Shape_Point point = new ShapesLibrary.Point(MouseX1,MouseY1, colors);
-                   // point.Draw(pictureBox1.CreateGraphics());
-                    AddShape(point);
+                    
                     break;
                 case Mode.DrawLine:
                     MouseX1 = e.X;
@@ -143,8 +154,11 @@ namespace Paint_Form
             switch (Mode)
             {
                 case Mode.DrawPoint:
-                    
-                    graphics.DrawEllipse(new Pen(colors), MouseX1, MouseY1, 2, 2);
+                   
+                        Shape_Point point = new ShapesLibrary.Point(MouseX1,MouseY1, colors);
+                   // point.Draw(pictureBox1.CreateGraphics());
+                    AddShape(point);
+                        graphics.DrawEllipse(new Pen(colors), MouseX1, MouseY1, 2, 2);
                     break;
                 case Mode.DrawLine:
                     //pictureBox1.Refresh();

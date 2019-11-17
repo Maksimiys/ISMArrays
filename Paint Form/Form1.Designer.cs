@@ -101,6 +101,7 @@
             this.listBoxShapes.FormattingEnabled = true;
             this.listBoxShapes.Location = new System.Drawing.Point(12, 61);
             this.listBoxShapes.Name = "listBoxShapes";
+            this.listBoxShapes.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxShapes.Size = new System.Drawing.Size(150, 342);
             this.listBoxShapes.TabIndex = 7;
             this.listBoxShapes.SelectedIndexChanged += new System.EventHandler(this.listBoxShapes_SelectedIndexChanged);
