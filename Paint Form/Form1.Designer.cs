@@ -41,10 +41,11 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(99, 67);
+            this.button4.Location = new System.Drawing.Point(12, 22);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(19, 20);
+            this.button4.Size = new System.Drawing.Size(96, 33);
             this.button4.TabIndex = 12;
+            this.button4.Text = "Колір";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -53,17 +54,19 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(255, 100);
+            this.pictureBox1.Location = new System.Drawing.Point(176, 61);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(447, 290);
+            this.pictureBox1.Size = new System.Drawing.Size(612, 377);
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(441, 61);
+            this.button3.Location = new System.Drawing.Point(362, 22);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(87, 33);
             this.button3.TabIndex = 10;
@@ -73,7 +76,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(348, 61);
+            this.button2.Location = new System.Drawing.Point(269, 22);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(87, 33);
             this.button2.TabIndex = 9;
@@ -83,7 +86,7 @@
             // 
             // Point
             // 
-            this.Point.Location = new System.Drawing.Point(255, 61);
+            this.Point.Location = new System.Drawing.Point(176, 22);
             this.Point.Name = "Point";
             this.Point.Size = new System.Drawing.Size(87, 33);
             this.Point.TabIndex = 8;
@@ -96,16 +99,16 @@
             this.listBoxShapes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.listBoxShapes.FormattingEnabled = true;
-            this.listBoxShapes.Location = new System.Drawing.Point(99, 100);
+            this.listBoxShapes.Location = new System.Drawing.Point(12, 61);
             this.listBoxShapes.Name = "listBoxShapes";
-            this.listBoxShapes.Size = new System.Drawing.Size(150, 290);
+            this.listBoxShapes.Size = new System.Drawing.Size(150, 342);
             this.listBoxShapes.TabIndex = 7;
             this.listBoxShapes.SelectedIndexChanged += new System.EventHandler(this.listBoxShapes_SelectedIndexChanged);
             // 
             // buttonDelete
             // 
             this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonDelete.Location = new System.Drawing.Point(99, 396);
+            this.buttonDelete.Location = new System.Drawing.Point(12, 414);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(150, 24);
             this.buttonDelete.TabIndex = 13;
@@ -127,6 +130,7 @@
             this.Controls.Add(this.listBoxShapes);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

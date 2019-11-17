@@ -18,7 +18,10 @@ namespace Paint_Form
         Color colors = Color.Black;
         protected int MouseX1, MouseY1, MouseX2, MouseY2;
         public void AddShape(Shape_Point shape)
-        {
+        {if (Shapes == null)
+            {
+                Shapes = new List<Shape_Point>();
+            }
             Shapes.Add(shape);
             listBoxShapes.Items.Add(shape);
 
@@ -52,14 +55,18 @@ namespace Paint_Form
             Mode = Mode.DrawLine;
         }
 
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+       
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            switch (Mode)
+            if (Shapes == null)
             {
-                case Mode.DrawPoint:
-                    Graphics graphics = pictureBox1.CreateGraphics();
-                    graphics.DrawEllipse(new Pen(Color.Red), MouseX1, MouseY1, 2, 2);
-                    break;
+                Shapes = new List<Shape_Point>();
+            }
+            for (int j = 0; j < Shapes.Count; j++)
+            {
+               Shapes[j].Draw(e.Graphics);
+
             }
         }
 
@@ -68,13 +75,20 @@ namespace Paint_Form
             Mode = Mode.DrawEllips;
         }
 
+        
+
+        public void DeleteShape(int number)
+        {
+            Shapes.RemoveAt(number);
+            listBoxShapes.Items.RemoveAt(number);
+            pictureBox1.Refresh();
+            
+        }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (listBoxShapes.SelectedIndex >= 0)
-            {
-                Shapes.RemoveAt(listBoxShapes.SelectedIndex);
-                listBoxShapes.Items.RemoveAt(listBoxShapes.SelectedIndex);
-            }
+
+            DeleteShape(listBoxShapes.SelectedIndex);
+           
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -84,10 +98,70 @@ namespace Paint_Form
                 case Mode.DrawPoint:
                     MouseX1 = e.X;
                     MouseY1 = e.Y;
-                    Shape_Point point = new ShapesLibrary.Point(MouseX1,
-                                                                             MouseY1,
-                                                                             colors);
+                    //Shapes.Add(new ShapesLibrary.Point());
+                    Shape_Point point = new ShapesLibrary.Point(MouseX1,MouseY1, colors);
+                   // point.Draw(pictureBox1.CreateGraphics());
                     AddShape(point);
+                    break;
+                case Mode.DrawLine:
+                    MouseX1 = e.X;
+                    MouseY1 = e.Y;
+                    break;
+                case Mode.DrawEllips:
+                    MouseX1 = e.X;
+                    MouseY1 = e.Y;
+                    break;
+            }
+        }
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {Graphics graphics = pictureBox1.CreateGraphics();
+            switch (Mode)
+            {
+                case Mode.DrawLine:
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        pictureBox1.Refresh();
+                        MouseX2 = e.X;
+                        MouseY2 = e.Y;
+                        graphics.DrawLine(new Pen(colors), MouseX1, MouseY1, MouseX2, MouseY2); ;
+                    }
+                        break;
+                case Mode.DrawEllips:
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        pictureBox1.Refresh();
+                        MouseX2 = e.X;
+                        MouseY2 = e.Y;
+                        graphics.DrawEllipse(new Pen(colors), MouseX1, MouseY1, (MouseX2-MouseX1), (MouseY2-MouseY1));
+                    }
+                    break;
+            }
+        } 
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            Graphics graphics = pictureBox1.CreateGraphics();
+            switch (Mode)
+            {
+                case Mode.DrawPoint:
+                    
+                    graphics.DrawEllipse(new Pen(colors), MouseX1, MouseY1, 2, 2);
+                    break;
+                case Mode.DrawLine:
+                    //pictureBox1.Refresh();
+                    MouseX2 = e.X;
+                    MouseY2 = e.Y;
+                   
+                    graphics.DrawLine(new Pen(colors), MouseX1, MouseY1, MouseX2, MouseY2);
+                    Shape_Point Line = new ShapesLibrary.Line(MouseX1, MouseY1,MouseX2,MouseY2, colors);
+                    // point.Draw(pictureBox1.CreateGraphics());
+                    AddShape(Line);
+                    break;
+                case Mode.DrawEllips:
+                        MouseX2 = e.X;
+                        MouseY2 = e.Y;
+                        graphics.DrawEllipse(new Pen(colors), MouseX1, MouseY1, (MouseX2 - MouseX1), (MouseY2 - MouseY1));
+                    Shape_Point Ellips = new ShapesLibrary.Ellips(MouseX1, MouseY1, (MouseX2 - MouseX1), (MouseY2 - MouseY1), colors);
+                    AddShape(Ellips);
                     break;
             }
         }

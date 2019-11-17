@@ -29,7 +29,7 @@ namespace ShapesLibrary
             }
             public override void Draw(Graphics graphics)
             {
-                graphics.FillEllipse(point, X, Y, 3, 3);
+                graphics.DrawEllipse(new Pen(colors), X, Y, 3, 3);
             }
         public override void Move(Graphics graphics,int x,int y)
         {
